@@ -6,7 +6,7 @@ import { useLazyGetSummaryQuery } from '../services/article';
 const Demo = () => {
   const [article,setArticle] =useState({
    url:'',
-   article:'',
+   summary:'',
   });
 
 const [getSummary,{error,isFetching}]=
@@ -14,10 +14,11 @@ useLazyGetSummaryQuery();
 
 const handleSubmit =async (e) => {
   e.preventDefault();
+  
  const {data} =await getSummary({articleUrl: article.url});
 
 if(data?.summary){
-  const newArticle={...article,summary:data.summary};
+  const newArticle= { ...article,summary:data.summary};
 
   setArticle(newArticle);
 
